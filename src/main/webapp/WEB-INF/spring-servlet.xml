@@ -3,10 +3,48 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+
+    </mvc:annotation-driven>
 
     <context:component-scan base-package="com.pzhihao" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>
     </context:component-scan>
+
+    <!--
+    使用Velocity模板
+    <bean id="velocityConfiger" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="classpath:/volecity/templates"></property>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">utf-8</prop>
+                <prop key="output.encoding">utf-8</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="suffix" value=".vm"></property>
+        <property name="contentType" value="text/html;charset=utf-8"></property>
+    </bean>
+    -->
+
+    <bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="classpath:/freemarker/templates"></property>
+        <property name="defaultEncoding" value="UTF-8"></property>
+    </bean>
+
+    <bean id="freeMarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="suffix" value=".html"></property>
+        <property name="contentType" value="text/html;charset=utf-8"></property>
+        <property name="cache" value="false"></property>
+        <property name="exposeRequestAttributes" value="true"></property>
+        <property name="exposeSessionAttributes" value="true"></property>
+        <property name="exposeSpringMacroHelpers" value="true"></property>
+
+       <property name="requestContextAttribute" value="rc"></property>
+    </bean>
+
+
 
 </beans>

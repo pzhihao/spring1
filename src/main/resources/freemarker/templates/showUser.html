@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <#assign ctx = rc.contextPath />
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="icon" href="${ctx!}/images/JASU_Squares_ J.jpg"  />
+</head>
+<body>
+
+<#list users as user>
+    username:${user.username}
+    password:${user.password}
+</#list>
+${url}
+</body>
+</html>
